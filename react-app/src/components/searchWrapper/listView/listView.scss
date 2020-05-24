@@ -1,0 +1,17 @@
+@import "../../../template/colors.scss";
+
+.list-view-wrapper {
+  .list-view {
+    background-color: $background-color;
+    &:not(:last-child) {
+      border-bottom: 10px solid #fff;
+    }
+
+    button{
+      &, &:hover, &:focus{
+        background-color: $primary-color;
+        border-radius: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import "../../template/colors.scss";
+
+@keyframes Rotate {
+  0% {-webkit-transform:rotate(0deg);}
+  25% {-webkit-transform:rotate(360deg);}
+}
+
+@-webkit-keyframes Rotate {
+  0% {-webkit-transform:rotate(0deg);}
+  25% {-webkit-transform:rotate(360deg);}
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  background-color: $background-color;
+  font-size: 5em;
+
+  & > .fa-search {
+    -webkit-animation: Rotate 2s linear infinite;
+    animation: Rotate 2s linear infinite;
+  }
+}

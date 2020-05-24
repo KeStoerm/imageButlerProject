@@ -1,0 +1,22 @@
+.gallery-view-wrapper {
+  flex-wrap: wrap;
+  & > .image-wrapper {
+    height: 30vh;
+    flex-grow: 1;
+    overflow: hidden;
+
+    & > img {
+      height: auto;
+      min-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      vertical-align: bottom;
+      cursor: pointer;
+      transition: transform 8s ease;
+
+      &:hover{
+        transform: scale(1.5);
+      }
+    }
+  }
+}

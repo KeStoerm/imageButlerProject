@@ -1,0 +1,17 @@
+@import "../../../template/colors.scss";
+
+.viewport-selection {
+  background-color: $background-color;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+
+  & > span {
+    padding: 10px 10px;
+    cursor: pointer;
+    &.is-active, &:hover {
+      color: $primary-color;
+    }
+  }
+}

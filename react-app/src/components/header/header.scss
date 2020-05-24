@@ -1,0 +1,9 @@
+.navbar {
+  .navbar-item {
+    cursor: pointer;
+    padding: 0 15px;
+    & > img {
+      max-height: none;
+    }
+  }
+}
