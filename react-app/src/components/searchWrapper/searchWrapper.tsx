@@ -3,7 +3,7 @@ import {Search} from "./search/search";
 import {getSplashBaseImagesByQuery, SplashBaseResponseImageEntry, getSplashBaseLatestImages} from "../../services/splashBaseService";
 import {LoadingSpinner} from "../common/loadingSpinner";
 import {GalleryView} from "./galleryView/galleryView";
-import {isNil} from "ramda";
+import {isNil, isEmpty} from "ramda";
 import {ViewSelection, View} from "./viewSelection/viewSelection";
 import {ListView} from "./listView/listView";
 import "./searchWrapper.scss"
@@ -14,22 +14,30 @@ export const SearchWrapper: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>("gallery");
 
   useEffect(() => {
-    getSplashBaseLatestImages()
-      .then(response => {
-        setLoading(false);
-        setImages(response.data.images);
-      })
+    getRandomImages();
   }, [])
+
+  const getRandomImages = () => getSplashBaseLatestImages()
+    .then(response => {
+      setLoading(false);
+      setImages(response.data.images);
+    })
+
+  const getImagesByQuery = query => getSplashBaseImagesByQuery(query)
+    .then(response => {
+      setLoading(false);
+      setImages(response.data.images);
+    });
 
   const onSend = async (query: string) => {
     setLoading(true);
     setImages(null);
 
-    getSplashBaseImagesByQuery(query)
-      .then(response => {
-        setLoading(false);
-        setImages(response.data.images);
-      });
+    if (isNil(query) || isEmpty(query)){
+      getRandomImages();
+    } else {
+      getImagesByQuery(query);
+    }
   }
 
   return <div className="search-wrapper">
